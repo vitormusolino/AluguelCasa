@@ -6,9 +6,14 @@ public class Main {
         Casa casa2 = new Casa(2);
         Casa casa3 = new Casa(3);
 
-        System.out.println(casa1.isAlugada());
-        casa1.alugarCasa(1);
-        System.out.println(casa1.isAlugada());
+        Pessoa pessoa1 = new Pessoa("Vitor", 19, 200);
+        Pessoa pessoa2 = new Pessoa("Alexandre", 17, 600);
+        Pessoa pessoa3 = new Pessoa("Omar", 23, 400);
+
+
+        casa1.alugarCasa(pessoa1);
+        casa1.alugarCasa(pessoa3);
+        casa3.alugarCasa(pessoa2);
 
         ArrayList<Casa> listaCasas = new ArrayList<>();
         listaCasas.add(casa1);

@@ -1,19 +1,28 @@
 public class Casa {
     private int numeroCasa;
     private boolean aluguelCasa;
+    private Pessoa pessoaAlugada;
 
-    public Casa(int numeroCasa){
+    public Casa(int numeroCasa) {
         this.numeroCasa = numeroCasa;
         this.aluguelCasa = false;
+        this.pessoaAlugada = null;
     }
 
-    public void alugarCasa(int numeroCasa){
-        if(this.numeroCasa == numeroCasa){
-            if (aluguelCasa){
-                System.out.println("Essa casa ja está alugada. Tente alugar outra casa!");
-            }else {
+    // O método agora recebe uma pessoa
+    public void alugarCasa(Pessoa pessoa) {
+        if (aluguelCasa) {
+            System.out.println(pessoa.getNome()+ " essa casa já está alugada. Tente outra casa.");
+        } else {
+            // Verificar se a pessoa tem dívida maior que 500
+            System.out.println("Verificando dívida da pessoa " + pessoa.getNome() + ": " + pessoa.getDivida());
+            if (pessoa.getDivida() > 500) {
+                System.out.println("A pessoa " + pessoa.getNome() + " tem uma dívida muito grande para alugar essa casa.");
+            } else {
+                // Alugar a casa para a pessoa
                 aluguelCasa = true;
-                System.out.println("A casa número " + numeroCasa + " está alugada para você!");
+                pessoaAlugada = pessoa;
+                System.out.println("A casa número " + numeroCasa + " foi alugada para " + pessoa.getNome());
             }
         }
     }
@@ -24,11 +33,10 @@ public class Casa {
 
     @Override
     public String toString() {
-        if(aluguelCasa){
-           return "Casa número " + numeroCasa + " no momento está: ALUGADA";
-        }else {
-            return "Casa número " + numeroCasa + " no momento está: LIVRE";
+        if (aluguelCasa) {
+            return "Casa número " + numeroCasa + " está ALUGADA para " + pessoaAlugada.getNome();
+        } else {
+            return "Casa número " + numeroCasa + " está LIVRE";
         }
     }
 }
-
